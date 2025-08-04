@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { countriesData } from "../data"; // Importăm datele
+import { countriesData } from "../data";
 import "./Countries.css";
 
-// Funcție pentru a amesteca un array (Fisher-Yates Shuffle)
 const shuffleArray = (array: any[]) => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-// Funcție pentru a genera toate întrebările (fără repetare)
 const generateQuestions = () => {
   return shuffleArray([...countriesData]).map(({ country, capital }) => {
     const wrongAnswers = shuffleArray(
       countriesData.filter(c => c.capital !== capital)
     )
-        .slice(0, 2) // Alegem 2 răspunsuri greșite
-        .map(c => c.capital);
-  
+      .slice(0, 3)
+      .map(c => c.capital);
+
     return {
       country,
       correct: capital,
@@ -34,7 +32,7 @@ const Countries: React.FC = () => {
   const [won, setWon] = useState(false);
 
   useEffect(() => {
-    setQuestions(generateQuestions()); // Inițializăm lista de întrebări
+    setQuestions(generateQuestions());
   }, []);
 
   const handleAnswer = (answer: string) => {
@@ -44,16 +42,26 @@ const Countries: React.FC = () => {
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        setWon(true); // Ai trecut prin toate țările
+        setWon(true);
         setGameOver(true);
       }
     } else {
-      setGameOver(true); // Ai greșit => jocul se termină
+      setGameOver(true);
     }
+  };
+
+  const restartGame = () => {
+    setQuestions(generateQuestions());
+    setCurrentQuestion(0);
+    setScore(0);
+    setGameOver(false);
+    setWon(false);
   };
 
   return (
     <div className="countries-container">
+      {!gameOver && <div className="score">Scor: {score}</div>}
+
       {!gameOver ? (
         <div className="question-card">
           <h2>Care este capitala acestei țări?</h2>
@@ -73,7 +81,8 @@ const Countries: React.FC = () => {
           ) : (
             <h2>Ai pierdut! Scorul tău este: {score} / {questions.length}</h2>
           )}
-          <button onClick={() => navigate("/")}>Mergi la Home</button>
+          <button onClick={() => navigate("/")}>Meniu principal</button>
+          <button onClick={restartGame} className="restart-button">Restart</button>
         </div>
       )}
     </div>

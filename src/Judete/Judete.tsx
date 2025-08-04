@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { countriesData } from "../data"; // Importăm datele
-import "./Flags.css";
+import { countiesData } from "../data";
+import "./Judete.css";
 
-// Funcție pentru a amesteca un array (Fisher-Yates Shuffle)
 const shuffleArray = (array: any[]) => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-// Funcție pentru a genera toate întrebările (fără repetare și cu variante diferite)
 const generateQuestions = () => {
-  return shuffleArray([...countriesData]).map(({ country, flag }) => {
-    // Alegem răspunsuri greșite diferite pentru fiecare întrebare
+  return shuffleArray([...countiesData]).map(({ judet, resedinta }) => {
     const wrongAnswers = shuffleArray(
-      countriesData.filter(c => c.country !== country)
+      countiesData.filter(c => c.resedinta !== resedinta)
     )
-      .slice(0, 3) // Alegem 3 răspunsuri greșite aleatoriu
-      .map(c => c.country);
+      .slice(0, 3)
+      .map(c => c.resedinta);
 
     return {
-      flag,
-      correct: country,
-      options: shuffleArray([country, ...wrongAnswers]) // Amestecăm opțiunile
+      judet,
+      correct: resedinta,
+      options: shuffleArray([resedinta, ...wrongAnswers])
     };
   });
 };
 
-const Flags: React.FC = () => {
+const Judete: React.FC = () => {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState(() => generateQuestions());
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -35,7 +32,7 @@ const Flags: React.FC = () => {
   const [won, setWon] = useState(false);
 
   useEffect(() => {
-    setQuestions(generateQuestions()); // Inițializăm lista de întrebări
+    setQuestions(generateQuestions());
   }, []);
 
   const handleAnswer = (answer: string) => {
@@ -45,11 +42,11 @@ const Flags: React.FC = () => {
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        setWon(true); // Ai trecut prin toate întrebările
+        setWon(true);
         setGameOver(true);
       }
     } else {
-      setGameOver(true); // Ai greșit => jocul se termină
+      setGameOver(true);
     }
   };
 
@@ -62,12 +59,13 @@ const Flags: React.FC = () => {
   };
 
   return (
-    <div className="flags-container">
+    <div className="judete-container">
       {!gameOver && <div className="score">Scor: {score}</div>}
+
       {!gameOver ? (
         <div className="question-card">
-          <h2>Al cărei țări este acest steag?</h2>
-          <img src={questions[currentQuestion].flag} alt="Flag" className="flag-image" />
+          <h2>Care este reședința acestui județ?</h2>
+          <h1>{questions[currentQuestion].judet}</h1>
           <div className="options">
             {questions[currentQuestion].options.map((option) => (
               <button key={option} className="option-button" onClick={() => handleAnswer(option)}>
@@ -79,7 +77,7 @@ const Flags: React.FC = () => {
       ) : (
         <div className="result">
           {won ? (
-            <h2>🎉 Felicitări! Ai ghicit toate steagurile corect! 🎉</h2>
+            <h2>🎉 Felicitări! Ai ghicit toate reședințele corect! 🎉</h2>
           ) : (
             <h2>Ai pierdut! Scorul tău este: {score} / {questions.length}</h2>
           )}
@@ -91,4 +89,4 @@ const Flags: React.FC = () => {
   );
 };
 
-export default Flags;
+export default Judete;

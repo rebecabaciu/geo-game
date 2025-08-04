@@ -14,7 +14,7 @@ const generateQuestions = () => {
     const wrongAnswers = shuffleArray(
       countriesData.filter(c => c.country !== country)
     )
-        .slice(0, 2) // Alegem 2 răspunsuri greșite
+        .slice(0, 3) // Alegem 3 răspunsuri greșite
         .map(c => c.country);
 
     return {
@@ -52,8 +52,18 @@ const Capitals: React.FC = () => {
     }
   };
 
+  const restartGame = () => {
+    setQuestions(generateQuestions());
+    setCurrentQuestion(0);
+    setScore(0);
+    setGameOver(false);
+    setWon(false);
+  };
+
   return (
     <div className="capitals-container">
+      {!gameOver && <div className="score">Scor: {score}</div>}
+
       {!gameOver ? (
         <div className="question-card">
           <h2>Ce țară are această capitală?</h2>
@@ -73,7 +83,8 @@ const Capitals: React.FC = () => {
           ) : (
             <h2>Ai pierdut! Scorul tău este: {score} / {questions.length}</h2>
           )}
-          <button onClick={() => navigate("/")}>Mergi la Home</button>
+          <button onClick={() => navigate("/")}>Meniu principal</button>
+          <button onClick={restartGame} className="restart-button">Restart</button>
         </div>
       )}
     </div>

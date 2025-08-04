@@ -14,6 +14,10 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .flag-image {
@@ -25,11 +29,14 @@
 }
 
 .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 coloane egale */
+    gap: 10px; /* Spațiu între butoane */
     margin-top: 15px;
+    width: 100%; /* Pentru aliniere corectă */
+    max-width: 400px; /* Opțional, pentru a nu fi prea late */
 }
+
 
 .option-button {
     background-color: #f4a261;
@@ -43,7 +50,9 @@
 }
 
 .option-button:hover {
-    background-color: #e76f51;
+    background-color: #0056b3;
+    border-color: #ff5733;
+    transform: scale(1.1);
 }
 
 .result {
@@ -67,4 +76,29 @@
     width: 450px;
     border: 2px solid #ddd;
     border-radius: 10px;
+  }
+
+  .score {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .restart-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-left: 10px;
+  }
+  
+  .restart-button:hover {
+    background-color: #218838;
   }

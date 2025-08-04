@@ -1,15 +1,15 @@
-.capitals-container {
+.resedinte-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 90vh;
     width: 80vw;
-    background-color: #f1f5f9;
+    background-color: #f8f9fa;
     text-align: center;
-}
+  }
 
-.question-card {
+  .question-card {
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -18,9 +18,9 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-}
-
-.options {
+  }
+  
+  .options {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 coloane egale */
     gap: 10px; /* Spațiu între butoane */
@@ -29,9 +29,9 @@
     max-width: 400px; /* Opțional, pentru a nu fi prea late */
 }
 
-
-.option-button {
-    background-color: #ff5733;
+  
+  .option-button {
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -39,51 +39,50 @@
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
-}
-
-.option-button:hover {
+  }
+  
+  .option-button:hover {
     background-color: #0056b3;
-    border-color: #ff5733;
-    transform: scale(1.1);
-}
-
-.result {
+  }
+  
+  .result {
     text-align: center;
-}
-
-.result h2 {
+  }
+  
+  .result h2 {
     margin-bottom: 15px;
+  }
+
+  .resedinte-container h1 {
+    color: #ff5733;
 }
 
-.capitals-container h1 {
+  .resedinte-container h2 {
     color: #2a9d8f;
 }
 
-.capitals-container h2 {
-    color: #264653;
+.score {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }
 
-.score {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .restart-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-    margin-left: 10px;
-  }
-  
-  .restart-button:hover {
-    background-color: #218838;
-  }
+.restart-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  margin-left: 10px;
+}
+
+.restart-button:hover {
+  background-color: #218838;
+}
+

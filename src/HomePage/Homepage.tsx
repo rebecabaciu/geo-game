@@ -8,16 +8,29 @@ const HomePage: React.FC = () => {
   return (
     <div className="homepage-container">
       <h1 className="homepage-title">Oare ești chiar atât de deștept pe cât te crezi?</h1>
-      <div className="game-options">
-        <button className="game-button" onClick={() => navigate("/countries")}>
-          Care e capitala corectă?
-        </button>
-        <button className="game-button" onClick={() => navigate("/capitals")}>
-          Care e țara corectă?
-        </button>
-        <button className="game-button" onClick={() => navigate("/flags")}>
-          Cărei țări îi aparține steagul?
-        </button>
+
+      <div className="category">
+        <h2>Țări și Capitale</h2>
+        <div className="button-row">
+          <button className="game-button" onClick={() => navigate("/capitals")}>Ghicește Țara</button>
+          <button className="game-button" onClick={() => navigate("/countries")}>Ghicește Capitala</button>
+        </div>
+      </div>
+
+      <div className="category">
+        <h2>Țări și Steaguri</h2>
+        <div className="button-row">
+          <button className="game-button" onClick={() => navigate("/flags")}>Ghicește Țara</button>
+          <button className="game-button" onClick={() => navigate("/countries2")}>Ghicește Steagul</button>
+        </div>
+      </div>
+
+      <div className="category">
+        <h2>Județe și Reședințe</h2>
+        <div className="button-row">
+          <button className="game-button" onClick={() => navigate("/resedinte")}>Ghicește Județul</button>
+          <button className="game-button" onClick={() => navigate("/judete")}>Ghicește Reședința</button>
+        </div>
       </div>
     </div>
   );
