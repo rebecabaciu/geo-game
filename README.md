@@ -4,7 +4,7 @@ GeoGame este o aplicație educațională interactivă de tip Quiz, născută din
 
 Proiectul a fost dezvoltat pentru a oferi o modalitate modernă și rapidă de a testa și consolida cunoștințele despre harta politică a lumii. Spre deosebire de alte quiz-uri simple, această aplicație acoperă **întreaga bază de date globală** (toate cele 195+ țări recunoscute), nu doar cele mai cunoscute.
 
-
+![](public/g1.png)
 
 ## Moduri de Joc
 
@@ -47,3 +47,7 @@ Dedicat geografiei locale, acest modul testează cunoștințele despre organizar
     ```bash
     npm run dev
     ```
+
+![](public/g3.png)
+![](public/g2.png)
+![](public/g4.png)
